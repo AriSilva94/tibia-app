@@ -1,5 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/buttons/button";
+import { ErrorMessage } from "@/components/ui/errorMessage";
+import { InputField } from "@/components/ui/inputField";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export default function SignInForm() {
@@ -10,7 +13,7 @@ export default function SignInForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!email || !password) {
-      setError("Por favor, preencha todos os campos");
+      setError("Please fill out all fields");
       return;
     }
     // Lógica de autenticação aqui
@@ -28,50 +31,32 @@ export default function SignInForm() {
 
   return (
     <div>
-      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      {error && <ErrorMessage message={error} />}
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            E-mail
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Digite seu e-mail"
-            required
-          />
-        </div>
+        <InputField
+          id="email"
+          label="E-mail"
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          placeholder="Enter your email"
+          required
+          error={error && !email ? "Email is required" : undefined}
+        />
 
-        <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Senha
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Digite sua senha"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Entrar
-        </button>
+        <InputField
+          id="password"
+          label="Password"
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder="Enter your password"
+          required
+          error={error && !password ? "Password is required" : undefined}
+        />
+        <Button type="submit" variant="primary">
+          Sign In
+        </Button>
       </form>
     </div>
   );

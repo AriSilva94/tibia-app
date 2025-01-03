@@ -1,6 +1,6 @@
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
+import { Typography } from "./typography";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -36,14 +36,15 @@ const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  <Typography
     ref={ref}
+    as="h3"
     className={cn(
       "text-2xl leading-none tracking-tight text-[#10375C] font-bold",
       className
     )}
     {...props}
-  />
+  ></Typography>
 ));
 CardTitle.displayName = "CardTitle";
 
@@ -51,11 +52,12 @@ const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p
+  <Typography
     ref={ref}
+    as="p"
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
-  />
+  ></Typography>
 ));
 CardDescription.displayName = "CardDescription";
 
