@@ -120,12 +120,13 @@ const DataGrid: React.FC<DataGridProps> = ({ data }) => {
               </div>
               <p
                 className={`font-medium ${
-                  key === "Balance" &&
-                  Number(
-                    String(data[key as keyof SessionData]).replace(",", ".")
-                  ) > 0
-                    ? "text-green-600"
-                    : "text-red-600"
+                  key === "Balance"
+                    ? parseFloat(
+                        String(data[key as keyof SessionData]).replace(",", "")
+                      ) > 0
+                      ? "text-green-600"
+                      : "text-red-600"
+                    : "text-black"
                 }`}
               >
                 {data[key as keyof SessionData] as string}

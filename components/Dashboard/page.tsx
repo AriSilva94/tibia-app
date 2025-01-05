@@ -18,7 +18,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <JsonInput
         onJsonParse={(data) => {
           if (data && isValidSessionData(data)) {

@@ -1,17 +1,18 @@
 import Link from "next/link";
 import SignUpForm from "./SignUpForm";
+import { Typography } from "@/components/ui/typography";
 
 export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">
+        <Typography as="h1" className="mb-6 text-center">
           Create your account
-        </h1>
+        </Typography>
         <SignUpForm />
 
         <div className="mt-4 text-center">
-          <p className="text-sm">
+          <Typography as="p">
             Already have an account?{" "}
             <Link
               href="/auth/sign-in"
@@ -19,7 +20,7 @@ export default function SignUpPage() {
             >
               Sign in
             </Link>
-          </p>
+          </Typography>
         </div>
       </div>
     </div>

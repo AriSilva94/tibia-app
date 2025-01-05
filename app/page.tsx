@@ -1,4 +1,4 @@
-import Dashboard from "@/components/Dashboard/page";
+import Main from "@/components/Home/page";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,8 +13,7 @@ export default function Home() {
 
         {/* Conteúdo centralizado */}
         <div className="col-span-12 lg:col-span-8">
-          {/* <SignInPage/> */}
-          <Dashboard />
+          <Main />
         </div>
 
         {/* Espaço para propaganda à direita (visível somente em telas grandes) */}

@@ -31,7 +31,7 @@ const JsonInput = ({ onJsonParse, data }: JsonInputProps) => {
     <div className={`${data ? "w-full" : "w-[1000px]"} mx-auto p-4`}>
       <textarea
         placeholder="Paste your JSON here..."
-        className="text-[#000] min-h-[200px] font-mono rounded border border-[#81689D] overflow-hidden focus:overflow-visible w-full"
+        className="text-[#000] font-mono rounded border border-[#81689D] overflow-hidden focus:overflow-visible w-full"
         onChange={handleInput}
         rows={data ? 30 : 20}
       />
