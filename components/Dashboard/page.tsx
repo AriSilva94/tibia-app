@@ -29,7 +29,7 @@ export default function Dashboard() {
 
       try {
         const q = query(
-          collection(db, "hunt-analyser"),
+          collection(db, "sessions"),
           where("uid", "==", user.uid)
         );
         const querySnapshot = await getDocs(q);
