@@ -63,7 +63,7 @@ const JsonInput = ({ onJsonParse, data }: JsonInputProps) => {
     try {
       const parsedData: SessionData = JSON.parse(textareaValue.trim());
       const analyserId = uuidv4();
-      const dataToSave = { ...parsedData, analyserId };
+      const dataToSave = { ...parsedData, analyserId, uid: user.uid };
 
       const sessionRef = doc(db, "sessions", analyserId);
       await setDoc(sessionRef, dataToSave);
