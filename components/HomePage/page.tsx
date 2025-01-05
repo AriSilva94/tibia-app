@@ -1,7 +1,7 @@
 import { Button } from "../ui/buttons/button";
 import { Typography } from "../ui/typography";
 
-export default function Main() {
+export default function HomePage() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="text-center p-6 max-w-3xl mx-auto">

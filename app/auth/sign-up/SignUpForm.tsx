@@ -16,7 +16,6 @@ export default function SignUpForm() {
       setError("Please fill out all fields");
       return;
     }
-    // Lógica de autenticação aqui
     console.log("Email:", email);
     console.log("Password:", password);
   };

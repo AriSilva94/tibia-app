@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import JsonInput from "@/components/Dashboard/JsonInput/page";
 import DataGrid from "@/components/Dashboard/DataGrid/page";
 import { SessionData } from "@/types/sessionData";
+import { useAuth } from "@/context/AuthContext";
+import SignInPage from "@/app/auth/sign-in/page";
+import { db } from "@/firebase/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 export default function Dashboard() {
+  const { user } = useAuth();
   const [parsedData, setParsedData] = useState<SessionData | null>(null);
 
   const isValidSessionData = (data: object): data is SessionData => {
@@ -16,6 +22,40 @@ export default function Dashboard() {
       "Damage" in data
     );
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!user?.uid) return;
+
+      try {
+        const q = query(
+          collection(db, "hunt-analyser"),
+          where("uid", "==", user.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        const documents = querySnapshot.docs;
+
+        if (documents.length > 0) {
+          const docData = documents[0].data();
+          console.log("docData", docData);
+          setParsedData(docData as SessionData);
+        } else {
+          setParsedData(null);
+        }
+      } catch (error) {
+        toast.error(
+          "Error fetching data from Firestore: " +
+            (error instanceof Error ? error.message : "Unknown error")
+        );
+      }
+    };
+
+    fetchData();
+  }, [user?.uid]);
+
+  if (!user) {
+    return <SignInPage />;
+  }
 
   return (
     <div className="flex min-h-screen">

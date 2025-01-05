@@ -1,8 +1,18 @@
-import Main from "@/components/Home/page";
+"use client";
+
+import Main from "@/components/HomePage/page";
+import { useAuth } from "@/context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HomePage from "@/components/HomePage/page";
 
 export default function Home() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <HomePage />;
+  }
+
   return (
     <>
       <div className="max-w-[2000px] mx-auto grid grid-cols-12 gap-4">
